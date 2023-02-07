@@ -4,6 +4,11 @@ function validateAge(dob) {
   return age >= 18;
 }
 
+function validateEmail(email) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true;
+  return false;
+}
+
 function validatePassword(password) {
   let hasUpperCase = false;
   let hasLowerCase = false;
@@ -73,6 +78,11 @@ email.addEventListener("input", () => {
   const emailError = document.getElementById("email-error");
   if (!emailValue) {
     addErrorMessage(emailError, "email can not be empty");
+    errors[2] = true;
+    return;
+  }
+  if (!validateEmail(emailValue)) {
+    addErrorMessage(emailError, "email not valid");
     errors[2] = true;
     return;
   }
